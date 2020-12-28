@@ -25,7 +25,7 @@ ENTITY_ID_FORMAT = "sensor.{}"
 
 
 class CoinbaseProDataProvider(object):
-    async def subscribe(entity):
+    async def subscribe(self, entity):
         """Subscribe to Websocket events"""
 
         response = requests.get("https://api.pro.coinbase.com/products/" + entity.product + "/ticker")

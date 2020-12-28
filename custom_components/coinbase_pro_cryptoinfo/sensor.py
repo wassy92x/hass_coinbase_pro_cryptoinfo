@@ -22,6 +22,17 @@ PLATFORM_SCHEMA = cv.PLATFORM_SCHEMA.extend(
     }
 )
 ENTITY_ID_FORMAT = "sensor.{}"
+
+
+class CoinbaseProDataProvider(object):
+    async def subscribe(entity):
+        """Subscribe to Websocket events"""
+
+        response = requests.get("https://api.pro.coinbase.com/products/" + entity.product + "/ticker")
+        body = response.json()
+        entity.async_set_price(body["price"])
+
+
 COINBASE_PRO_PROVIDER = CoinbaseProDataProvider()
 
 def setup_platform(hass, config, add_entities, disc_info=None):
@@ -81,12 +92,3 @@ class CoinbaseCryptoInfoSensor(Entity):
         """Subscribe to Websocket events."""
         await super().async_added_to_hass()
         await self._provider.subscribe(self)
-
-
-class CoinbaseProDataProvider(object):
-    async def subscribe(entity):
-        """Subscribe to Websocket events"""
-
-        response = requests.get("https://api.pro.coinbase.com/products/BTC-EUR/ticker")
-        body = response.json()
-        entity.async_set_price(body["price"])

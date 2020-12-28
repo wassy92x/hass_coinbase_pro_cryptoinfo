@@ -37,9 +37,9 @@ COINBASE_PRO_PROVIDER = CoinbaseProDataProvider()
 
 def setup_platform(hass, config, add_entities, disc_info=None):
     """Set up the Coinbase Pro platform."""
-    entity_id = generate_entity_id(ENTITY_ID_FORMAT, "crypto_" + conf[CONF_PROCUCT], hass=hass)
+    entity_id = generate_entity_id(ENTITY_ID_FORMAT, "crypto_" + config[CONF_PROCUCT], hass=hass)
     entities = []
-    entities.append(CoinbaseCryptoInfoSensor(entity_id, conf[CONF_PROCUCT], COINBASE_PRO_PROVIDER))
+    entities.append(CoinbaseCryptoInfoSensor(entity_id, config[CONF_PROCUCT], COINBASE_PRO_PROVIDER))
     add_entities(entities, False)
 
 

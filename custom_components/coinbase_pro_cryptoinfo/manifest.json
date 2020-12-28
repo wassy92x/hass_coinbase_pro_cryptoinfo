@@ -1,0 +1,8 @@
+{
+    "domain": "coinbase_pro_cryptoinfo",
+    "name": "Coinbase Pro Cryptoinfo",
+    "documentation": "",
+    "requirements": [],
+    "dependencies": [],
+    "codeowners": ["@wassy92x"]
+  }
